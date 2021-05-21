@@ -47,7 +47,7 @@ alert(`Voce recebe ${t/p} por hora`)
 
 ####### Exercícios de escrita de código #######
 
-####### Exercício 1 #######                     */
+####### Exercício 1 #######                    */ 
 
 let nome
 let idade
@@ -69,9 +69,9 @@ let r1
 let r2
 let r3
 
-r1 = prompt("Você está usando uma roupa azul hoje?")
-r2 = prompt("Você gosta de chocolate?")
-r3 = prompt("Você é torcedor ou torcedora do Sport Club Internacional?")
+r1 = prompt("Você está usando uma roupa azul hoje? Sim ou Não?")
+r2 = prompt("Você gosta de chocolate? Sim ou Não?")
+r3 = prompt("Você é torcedor ou torcedora do Sport Club Internacional? Sim ou Não?")
 
 console.log("Você está usando uma roupa azul hoje? -", r1)
 console.log("Você gosta de chocolate? -", r2)
@@ -95,3 +95,15 @@ b = c
 console.log("Os valores de A e B inseridos inicialmente serão invertidos.")
 console.log("O novo valor de A é", a)
 console.log("O novo valor de B é", b)
+
+
+
+// ####### DESAFIO #######
+
+let n1 = Number(prompt("Digite o primeiro número."))
+let n2 = Number(prompt("Digite o segundo número."))
+let x=n1+n2
+let y=n1*n2
+
+console.log("O número",n1,"somado ao número",n2,"é igual a",x)
+console.log("O número",n1,"multiplicado pelo número",n2,"é igual a",y)
