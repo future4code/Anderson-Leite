@@ -75,27 +75,50 @@ function calculaIngressosEspetaculo() {
 }
 
 // Exercício 8
+
 function checaStringsMesmoTamanho() {
-  let string1 = prompt("Digite uma palavra.")
-  let string2 = prompt("Digite outra palavra.")
+  const palavra1 = prompt("Digite uma palavra.")
+  const palavra2 = prompt("Digite outra palavra.")
+  const resultado = palavra1 > palavra2
+
+  console.log(resultado)
 }
 
 // Exercício 9
 function checaIgualdadeDesconsiderandoCase() {
-  // escreva seu código aqui
+  let string1 = prompt("Digite uma palavra.")
+  let string2 = prompt("Digite outra palavra.")
+  let resultado = string1 !== string2
+
+  console.log(resultado)
 }
 
 // Exercício 10
 function checaRenovacaoRG() {
-  // escreva seu código aqui
+  const anoAtual = Number(prompt("Digite o ano atual."))
+  const anoNascimento = Number(prompt("Digite o ano de seu nascimento."))
+  const anoCarteira = Number(prompt("Digite o ano em que sua Carteira de Identidade foi emitida."))
+
+  const ano = anoAtual - anoNascimento
+  const renov = anoAtual - anoCarteira
+    
+  const rg = ((ano <= 20) && (renov >= 5)) || ((ano > 20) && (ano <= 50) && (renov >= 10)) || ((ano > 50) && (renov >= 15))
+  console.log(rg)
 }
 
 // Exercício 11
 function checaAnoBissexto() {
-  // escreva seu código aqui
+  let ano = Number(prompt("Digite um ano."))
+  bissexto = ((ano % 400) === 0) || ((ano % 4) === 0) && ((ano % 100) !== 0)
+  console.log(bissexto)
 }
 
 // Exercício 12
 function checaValidadeInscricaoLabenu() {
-  // escreva seu código aqui
+  let idade = (prompt("Você tem mais de 18 anos?"))
+  let ensino = (prompt("Você possui ensino médio completo?"))
+  let dispon = (prompt("Você possui disponibilidade exclusiva durante os horários do curso?"))
+
+  positivo = (idade === 'sim') && (ensino === idade) && (dispon === ensino)
+  console.log(positivo)
 }
