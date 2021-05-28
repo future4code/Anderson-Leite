@@ -84,7 +84,7 @@ function checaStringsMesmoTamanho() {
   const palavra1 = prompt("Digite uma palavra.")
   const palavra2 = prompt("Digite outra palavra.")
   
-  console.log(palavra1 >= palavra2)
+  console.log(palavra1.length === palavra2.length)
 }
 
 // Exercício 9
