@@ -1,30 +1,35 @@
+/*##################################################### 
+##### BlackJack feito por Anderson Heidrich Leite #####
+#####            em 13 junho de 2021.             #####
+#####################################################*/
+
 console.log("Bem-vindo(a) ao jogo de Blackjack!")
 
 if(confirm("Quer iniciar uma nova rodada?")) {
 
-   const carta1 = comprarCarta();
-   const carta2 = comprarCarta();
-   const carta3 = comprarCarta();
-   const carta4 = comprarCarta();
-            
-      console.log("Usuário - Cartas: "+ carta1.texto + " e " + carta2.texto +". Pontuação: "+ (carta1.valor + carta2.valor) +".")
-      console.log("Computador - Cartas: "+ carta3.texto + " e " + carta4.texto +". Pontuação: "+ (carta3.valor + carta4.valor) +".")
+   let c1Jogador = comprarCarta();
+   let c2Jogador = comprarCarta();
+   let c1Computador = comprarCarta();
+   let c2Computador = comprarCarta();
+   let pontuacaoJogador = c1Jogador.valor + c2Jogador.valor
+   let pontuacaoComputador = c1Computador.valor + c2Computador.valor
+   
+      console.log("Usuário - Cartas: "+ c1Jogador.texto + " e " + c2Jogador.texto +". Pontuação: "+ pontuacaoJogador +".")
+      console.log("Computador - Cartas: "+ c1Computador.texto + " e " + c2Computador.texto +". Pontuação: "+ pontuacaoComputador +".")
        
-      if((carta1.valor + carta2.valor) === (carta3.valor + carta4.valor)) {
+      if(pontuacaoJogador === pontuacaoComputador) {
          console.log("Empate!")
       }
        
-      else if((carta1.valor + carta2.valor) >= (carta3.valor + carta4.valor)) {
+      else if(pontuacaoJogador > pontuacaoComputador) {
          console.log("O usuário venceu!")
       }
 
       else {
          console.log("O computador venceu!")
       }
-       
-       
-       
-}
+      
+   }
 
 else {
         
