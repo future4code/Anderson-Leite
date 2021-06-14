@@ -1,6 +1,6 @@
 /*##################################################### 
 ##### BlackJack feito por Anderson Heidrich Leite #####
-#####            em 13 junho de 2021.             #####
+#####           em 13 de junho de 2021.           #####
 #####################################################*/
 
 console.log("Bem-vindo(a) ao jogo de Blackjack!")
