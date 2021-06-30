@@ -137,6 +137,12 @@ td button:hover {
     height: 100px;
 }
 
+.container-do-search input {
+    border-style: none;
+    border-bottom: 2px solid black;
+    outline: 0;
+}
+
 .icone {
     width: 25px;
     height: 25px;
