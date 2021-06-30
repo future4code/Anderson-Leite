@@ -105,6 +105,13 @@ div:last-child {
     display: flex;
 }
 
+table tr td img {
+    max-width: 50px;
+    max-height: 50px;
+    max-width: auto;
+    max-height: auto;
+}
+
 table {
     width: 60%;
 }
@@ -121,7 +128,6 @@ td button {
     margin-top: 20px;
     height: 100px;
 }
-
 
 #back-button {
     background-color: white;
