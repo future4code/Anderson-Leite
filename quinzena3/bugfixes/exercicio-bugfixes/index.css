@@ -129,6 +129,12 @@ td button {
     height: 100px;
 }
 
+.icone {
+    width: 25px;
+    height: 25px;
+    background: white;
+}
+
 #back-button {
     background-color: white;
     width: 100px;
