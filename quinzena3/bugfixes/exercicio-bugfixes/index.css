@@ -98,6 +98,13 @@ div:last-child {
     text-align: center;
 }
 
+.tabela {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
 table {
     width: 60%;
 }
