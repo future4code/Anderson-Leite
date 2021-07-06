@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+
+.cabecalho {
+    background-color: mediumvioletred;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cabecalho img {
+    width: 2rem;
+    height: 2rem;
+    padding: 1rem;
+}
+
+.logo-nome {
+    display: flex;
+    align-items: center;
+}
+
+.cabecalho button {
+    margin: 18px;
+    padding: 4px 8px 4px 8px;
+    font-size: 14px;
+}
+/* Nav */
+
+nav {
+    background-color: #f2d0e0;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: 88vh;
+    width: 20vw;
+}
+
+nav ul li .icons {
+    margin: 1rem;
+    width: 20px;
+    height: 20px;
+}
+
+nav ul li .flecha {
+    width: 20px;
+    height: 20px;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/* Main */
+
+
+
+/* Footer */
+
+.rodape {
+    background-color: mediumvioletred;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 6vh;
+}
