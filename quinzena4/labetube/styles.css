@@ -12,6 +12,10 @@ header {
     justify-content: space-between;
     height: 84px;
     align-items: center;
+    position: sticky;
+    left: 0;
+    top: 0;
+    width: 100%;
 }
 
 .video-nome {
@@ -78,6 +82,10 @@ footer {
     height: 84px;
     align-items: center;
     justify-content: flex-start;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .copyright {
