@@ -4,10 +4,10 @@ import axios from "axios";
 
 const EstiloHeader = styled.div`
     display: flex;
-    width: 100%;
+    /* width: 100%; */
     height: 8vh;
     background-color: green;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     align-items: center;
 
     p {
@@ -15,17 +15,15 @@ const EstiloHeader = styled.div`
     }
 `
 
-class Header extends React.Component {
+export default class Header extends React.Component {
     render() {
         return (
-            <EstiloHeader>
             <div className="header">
+            <EstiloHeader>
                 <p>Login</p>
                 <p>Meu Perfil</p>
-            </div>
             </EstiloHeader>
+            </div>
         );
     }
 }
-
-export default Header;
