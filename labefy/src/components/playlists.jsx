@@ -26,8 +26,7 @@ export default class App extends React.Component {
   };
 
   getAllPlaylists = () => {
-    return axios.get(
-      "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+    return axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
       {
         headers: {
           Authorization: "anderson-leite-johnson"
@@ -37,18 +36,16 @@ export default class App extends React.Component {
   };
 
   onClickCreatePlaylist = () => {
-    return axios
-      .post(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
-        {
-          name: this.state.inputValue
-        },
-        {
-          headers: {
-            Authorization: "anderson-leite-johnson"
-          }
+    return axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+      {
+        name: this.state.inputValue
+      },
+      {
+        headers: {
+          Authorization: "anderson-leite-johnson"
         }
-      )
+      }
+    )
       .then(() => {
         this.getAllPlaylists().then((response) => {
           this.setState({ inputValue: "" });

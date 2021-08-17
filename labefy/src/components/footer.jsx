@@ -11,8 +11,14 @@ const EstiloFooter = styled.div`
     background-color: black;
     justify-content: space-evenly;
 
-    div {
+    .columns, .socialMedias {
         margin-top: 30px;
+    }
+
+    .column-1 {
+        display: flex;
+        align-items: center;
+        height: 51px;
     }
 
     p {
@@ -25,12 +31,6 @@ const EstiloFooter = styled.div`
         }
     }
 
-    .column-1 {
-        display: flex;
-        align-items: center;
-        height: 51px;
-    }
-
     img {
         width: 36px;
         height: 36px;
@@ -41,8 +41,20 @@ const EstiloFooter = styled.div`
     }
 
     h4 {
-        color: #555555;
+        color: #616161;
     }
+`
+
+const EstiloLinks = styled.div`
+    display: flex;
+    width: 900px;
+    justify-content: space-evenly;
+`
+
+const EstiloMedias = styled.div`
+    display: flex;
+    width: 200px;
+    justify-content: space-evenly;
 `
 
 export default class Footer extends React.Component {
@@ -50,30 +62,43 @@ export default class Footer extends React.Component {
         return (
             <div className="footer">
             <EstiloFooter>
-                <div className="column-1">
-                    <img src={Logo}/>
-                    <h1>Labefy</h1>
+                <div className="columns">
+                    <EstiloLinks>
+                        <div className="column-1">
+                            <img src={Logo}/>
+                            <h1>Labefy</h1>
+                        </div>
+                        <div className="column-2">
+                            <h4>EMPRESA</h4>
+                            <p>Sobre</p>
+                            <p>Empregos</p>
+                            <p>For the Record</p>
+                        </div>
+                        <div className="column-3">
+                            <h4>COMUNIDADES</h4>
+                            <p>Para Artistas</p>
+                            <p>Desenvolvedores</p>
+                            <p>Publicidade</p>
+                            <p>Investidores</p>
+                            <p>Fornecedores</p>
+                        </div>
+                        <div className="column-4">
+                            <h4>LINKS ÚTEIS</h4>
+                            <p>Suporte</p>
+                            <p>Player da Web</p>
+                            <p>Aplicativo móvel grátis</p>
+                        </div>
+                    </EstiloLinks>
                 </div>
-                <div className="column-2">
-                    <h4>EMPRESA</h4>
-                    <p>Sobre</p>
-                    <p>Empregos</p>
-                    <p>For the Record</p>
+                
+                <div className="socialMedias">
+                    <EstiloMedias>
+                        <p>Logo Insta</p>
+                        <p>Logo TT</p>
+                        <p>Logo FB</p>
+                    </EstiloMedias>
                 </div>
-                <div className="column-3">
-                    <h4>COMUNIDADES</h4>
-                    <p>Para Artistas</p>
-                    <p>Desenvolvedores</p>
-                    <p>Publicidade</p>
-                    <p>Investidores</p>
-                    <p>Fornecedores</p>
-                </div>
-                <div className="column-4">
-                    <h4>LINKS ÚTEIS</h4>
-                    <p>Suporte</p>
-                    <p>Player da Web</p>
-                    <p>Aplicativo móvel grátis</p>
-                </div>
+
             </EstiloFooter>
             </div>
         );
