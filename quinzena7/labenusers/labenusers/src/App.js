@@ -1,11 +1,36 @@
 import React from 'react';
+import TelaCadastro from './components/TelaCadastro';
+import TelaListaUsuarios from './components/TelaListaUsuarios';
 
-function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+export default class App extends React.Component {
+  state = {
+    telaAtual: "cadastro"
+  }
+
+  escolheTela = () => {
+    switch (this.state.telaAtual){
+      case "cadastro":
+        return <TelaCadastro irParaLista={this.irParaLista}/>
+      case "lista":
+        return <TelaListaUsuarios irParaCadastro={this.irParaCadastro}/>
+      default:
+        return <div>Página não encontrada!</div>
+    }
+  }
+
+  irParaCadastro = () => {
+    this.setState({telaAtual: "cadastro"})
+  }
+
+  irParaLista = () => {
+    this.setState({telaAtual: "lista"})
+  }
+
+  render() {
+    return (
+      <div className="App">
+        {this.escolheTela()}
+      </div>
+    );
+  }
 }
-
-export default App;
