@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
+// import axios from "axios";
 import Logo from "../assets/Logo.png";
 
 const EstiloFooter = styled.div`

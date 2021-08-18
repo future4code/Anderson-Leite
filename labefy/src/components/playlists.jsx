@@ -7,19 +7,37 @@ const EstiloPlaylists = styled.div`
 
   p {
     color: #dadada;
-  }
-
-  p:hover {
-    cursor: pointer;
-    color: #a1a1a1;
+  
+    &:hover {
+      cursor: pointer;
+      color: #a1a1a1;
+    }
   }
 
   button {
     width: 100%;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    
+    &:hover {
+      background-color: orange;
+    }
+  }
+
+  .deleteButton {
+    width: 24px;
+    height: 20px;
   }
 `
 
-export default class App extends React.Component {
+const Playlist = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export default class Playlists extends React.Component {
   state = {
     playlists: [],
     inputValue: ""
@@ -35,7 +53,7 @@ export default class App extends React.Component {
     );
   };
 
-  onClickCreatePlaylist = () => {
+  createPlaylist = () => {
     return axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
       {
         name: this.state.inputValue
@@ -64,17 +82,40 @@ export default class App extends React.Component {
     });
   };
 
+  deletePlaylist = (playlistId) => {
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}`
+    axios.delete(url, {
+        headers: {
+            Authorization: "anderson-leite-johnson"
+        }
+    })
+    .then((res) => {
+      alert("Playlist deletada!")
+      this.getAllPlaylists()
+      console.log(this.getAllPlaylists())
+    })
+    .catch((err) => {
+      alert("Erro! Tente novamente!")
+    })
+}
+
   render() {
     return (
-      <div className="playlists">
+      <div>
         <EstiloPlaylists>
         <h2>Playlists</h2>
         {this.state.playlists.map((playlist, i) => {
-          return <p key={i}>{playlist.name}</p>;
-        })}
+          return (
+          <div>
+            <Playlist>
+            <p key={i}>{playlist.name}</p>
+            <button className="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}>X</button>
+            </Playlist>
+          </div>
+        )})}
         <input value={this.state.inputValue} onChange={this.onValueChange} />
         <div>
-          <button onClick={this.onClickCreatePlaylist}>Create Playlist</button>
+          <button onClick={this.createPlaylist}>Create Playlist</button>
         </div>
         </EstiloPlaylists>
       </div>
