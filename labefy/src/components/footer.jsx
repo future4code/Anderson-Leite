@@ -1,18 +1,32 @@
 import React from "react";
 import styled from "styled-components";
-// import axios from "axios";
 import Logo from "../assets/Logo.png";
 
 const EstiloFooter = styled.div`
     display: flex;
     width: 100%;
-    height: 40vh;
+    height: 56vh;
     color: white;
     background-color: black;
     justify-content: space-evenly;
 
-    .columns, .socialMedias {
+    .footer-top {
+        display: flex;
+        width: 100%;
+        /* background-color: green; */
         margin-top: 30px;
+    }
+
+    .columns {
+        display: flex;
+        width: 900px;
+        justify-content: space-between;
+    }
+
+    .socialMedias {
+        display: flex;
+        width: 200px;
+        justify-content: space-evenly;
     }
 
     .column-1 {
@@ -43,64 +57,100 @@ const EstiloFooter = styled.div`
     h4 {
         color: #616161;
     }
-`
 
-const EstiloLinks = styled.div`
-    display: flex;
-    width: 900px;
-    justify-content: space-evenly;
-`
+    .footer-bottom {
+        /* background-color: blue; */
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 90px;
+        color: #616161;
+        
+        small {
+            text-shadow: 0px 0px 1px #616161;
+        }
+    }
 
-const EstiloMedias = styled.div`
-    display: flex;
-    width: 200px;
-    justify-content: space-evenly;
+    .footer-bottom-left {
+        display: flex;
+        width: 560px;
+        justify-content: space-between;
+        
+        small:hover {
+            text-shadow: 0px 0px 1px #ffa600;
+            cursor: pointer;
+            color: orange;
+        }
+    }
+
+    .footer-bottom-right {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
 `
 
 export default class Footer extends React.Component {
+    handleClick = () => {
+        alert("Em desenvolvimento.");
+    }
+
     render() {
         return (
-            <div className="footer">
             <EstiloFooter>
-                <div className="columns">
-                    <EstiloLinks>
+            <div className="footer">
+                <div className="footer-top">
+                    <div className="columns">
                         <div className="column-1">
                             <img src={Logo}/>
                             <h1>Labefy</h1>
                         </div>
                         <div className="column-2">
                             <h4>EMPRESA</h4>
-                            <p>Sobre</p>
-                            <p>Empregos</p>
-                            <p>For the Record</p>
+                            <p onClick={this.handleClick}>Sobre</p>
+                            <p onClick={this.handleClick}>Empregos</p>
+                            <p onClick={this.handleClick}>For the Record</p>
                         </div>
                         <div className="column-3">
                             <h4>COMUNIDADES</h4>
-                            <p>Para Artistas</p>
-                            <p>Desenvolvedores</p>
-                            <p>Publicidade</p>
-                            <p>Investidores</p>
-                            <p>Fornecedores</p>
+                            <p onClick={this.handleClick}>Para Artistas</p>
+                            <p onClick={this.handleClick}>Desenvolvedores</p>
+                            <p onClick={this.handleClick}>Publicidade</p>
+                            <p onClick={this.handleClick}>Investidores</p>
+                            <p onClick={this.handleClick}>Fornecedores</p>
                         </div>
                         <div className="column-4">
                             <h4>LINKS ÚTEIS</h4>
-                            <p>Suporte</p>
-                            <p>Player da Web</p>
-                            <p>Aplicativo móvel grátis</p>
+                            <p onClick={this.handleClick}>Suporte</p>
+                            <p onClick={this.handleClick}>Player da Web</p>
+                            <p onClick={this.handleClick}>Aplicativo móvel grátis</p>
                         </div>
-                    </EstiloLinks>
-                </div>
+                    </div>
                 
-                <div className="socialMedias">
-                    <EstiloMedias>
-                        <p>Logo Insta</p>
-                        <p>Logo TT</p>
-                        <p>Logo FB</p>
-                    </EstiloMedias>
+                    <div className="socialMedias">
+                        <p>Insta</p>
+                        <p>TT</p>
+                        <p>FB</p>
+                    </div>
                 </div>
 
-            </EstiloFooter>
+                <div className="footer-bottom">
+                    <div className="footer-bottom-left">
+                        <small onClick={this.handleClick}>Sobre</small>
+                        <small onClick={this.handleClick}>Centro de privacidade</small>
+                        <small onClick={this.handleClick}>Política de privacidade</small>
+                        <small onClick={this.handleClick}>Cookies</small>
+                        <small onClick={this.handleClick}>Sobre anúncios</small>
+                    </div>
+
+                    <div className="footer-bottom-right">
+                        <small>Brasil</small>
+                        <small>© 2021 Labefy</small>
+                    </div>
+                </div>
             </div>
+            </EstiloFooter>
         );
     }
 }

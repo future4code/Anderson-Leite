@@ -19,6 +19,8 @@ const EstiloPlaylists = styled.div`
     cursor: pointer;
     background-color: white;
     color: black;
+    border-radius: 2px;
+    border: none;
     
     &:hover {
       background-color: orange;
@@ -62,12 +64,11 @@ export default class Playlists extends React.Component {
         headers: {
           Authorization: "anderson-leite-johnson"
         }
-      }
-    )
+      })
       .then(() => {
-        this.getAllPlaylists().then((response) => {
+        this.getAllPlaylists().then((res) => {
           this.setState({ inputValue: "" });
-          this.setState({ playlists: response.data.result.list });
+          this.setState({ playlists: res.data.result.list });
         });
       });
   };
@@ -77,8 +78,8 @@ export default class Playlists extends React.Component {
   };
 
   componentDidMount = () => {
-    this.getAllPlaylists().then((response) => {
-      this.setState({ playlists: response.data.result.list });
+    this.getAllPlaylists().then((res) => {
+      this.setState({ playlists: res.data.result.list });
     });
   };
 
@@ -89,10 +90,11 @@ export default class Playlists extends React.Component {
             Authorization: "anderson-leite-johnson"
         }
     })
-    .then((res) => {
+    .then(() => {
       alert("Playlist deletada!")
-      this.getAllPlaylists()
-      console.log(this.getAllPlaylists())
+      this.getAllPlaylists().then((res) => {
+        this.setState({ playlists: res.data.result.list });
+      })
     })
     .catch((err) => {
       alert("Erro! Tente novamente!")
@@ -113,9 +115,9 @@ export default class Playlists extends React.Component {
             </Playlist>
           </div>
         )})}
-        <input value={this.state.inputValue} onChange={this.onValueChange} />
+        <input placeholder={"Nome da playlist..."} value={this.state.inputValue} onChange={this.onValueChange} />
         <div>
-          <button onClick={this.createPlaylist}>Create Playlist</button>
+          <button onClick={this.createPlaylist}>Criar Playlist</button>
         </div>
         </EstiloPlaylists>
       </div>

@@ -8,8 +8,8 @@ import Footer from "./components/footer";
 const EstiloPagina = styled.div`
   display: flex;
   flex-direction: column;
-  /* height: 100vh; */
   background-color: #1C1C1C;
+  /* height: 100vh; */
   /* color: orange; */
 `
 
