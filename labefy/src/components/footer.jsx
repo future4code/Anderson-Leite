@@ -12,9 +12,8 @@ const EstiloFooter = styled.div`
 
     .footer-top {
         display: flex;
-        width: 100%;
-        /* background-color: green; */
-        margin-top: 30px;
+        width: 1100px;
+        margin-top: 80px;
     }
 
     .columns {
@@ -26,7 +25,8 @@ const EstiloFooter = styled.div`
     .socialMedias {
         display: flex;
         width: 200px;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        margin-left: 100px;
     }
 
     .column-1 {
@@ -55,17 +55,16 @@ const EstiloFooter = styled.div`
     }
 
     h4 {
-        color: #616161;
+        color: #808080;
     }
 
     .footer-bottom {
-        /* background-color: blue; */
         display: flex;
         width: 100%;
         justify-content: space-between;
         align-items: center;
         margin-top: 90px;
-        color: #616161;
+        color: #808080;
         
         small {
             text-shadow: 0px 0px 1px #616161;
@@ -137,7 +136,7 @@ export default class Footer extends React.Component {
 
                 <div className="footer-bottom">
                     <div className="footer-bottom-left">
-                        <small onClick={this.handleClick}>Sobre</small>
+                        <small onClick={this.handleClick}>Legal</small>
                         <small onClick={this.handleClick}>Centro de privacidade</small>
                         <small onClick={this.handleClick}>Política de privacidade</small>
                         <small onClick={this.handleClick}>Cookies</small>
