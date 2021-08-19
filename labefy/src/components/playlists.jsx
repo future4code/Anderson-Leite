@@ -82,11 +82,13 @@ export default class Playlists extends React.Component {
 
   addTrackToPlaylist = (playlistId) => {
     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
-    axios.post(url, {
-        name: "",
-        artist: "",
-        url: ""
-      },
+    const body = {
+      name: "",
+      artist: "",
+      url: ""
+    }
+
+    axios.post(url, body, 
       {
         headers: {
           Authorization: "anderson-leite-johnson"
@@ -94,6 +96,7 @@ export default class Playlists extends React.Component {
       })
       .then((res) => {
         console.log(res)
+        this.setState({ playlistId: res.data.result.list })
         // this.getAllPlaylists().then((res) => {
         //   this.setState({ playlists: res.data.result.list });
         // })
