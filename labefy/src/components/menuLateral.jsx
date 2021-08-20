@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Playlists from "./playlists";
+import Playlists from "./Playlists";
 import Logo from "../assets/Logo.png";
 
 const EstiloMenuLateral = styled.div`

@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import axios from "axios";
-import TelaPrincipal from "../pages/telaPrincipal";
-import TelaPlaylist from "../pages/telaPlaylist";
+import { BASE_URL } from "../constants/urls";
 
 const EstiloPlaylists = styled.div`
+  display: flex;
   margin-left: 24px;
+  margin-right: 24px;
+  justify-content: center;
 
   p {
     color: #dadada;
@@ -16,8 +18,17 @@ const EstiloPlaylists = styled.div`
     }
   }
 
+  input {
+    padding: 0;
+    width: 100%;
+    height: 20px;
+    border: none;
+    border-radius: 2px;
+  }
+
   button {
     width: 100%;
+    height: 20px;
     cursor: pointer;
     background-color: white;
     color: black;
@@ -53,7 +64,7 @@ export default class Playlists extends React.Component {
   };
 
   getAllPlaylists = () => {
-    return axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+    return axios.get(`${BASE_URL}`,
       {
         headers: {
           Authorization: "anderson-leite-johnson"
@@ -63,7 +74,7 @@ export default class Playlists extends React.Component {
   };
 
   createPlaylist = () => {
-    return axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists",
+    return axios.post(`${BASE_URL}`,
       {
         name: this.state.inputValue
       },
@@ -77,34 +88,11 @@ export default class Playlists extends React.Component {
           this.setState({ inputValue: "" });
           this.setState({ playlists: res.data.result.list });
         });
+      })
+      .catch ((err) => {
+        alert("Já existe uma Playlist com este nome ou nenhum nome foi informado. Por favor, utilize um nome diferente.")
       });
   };
-
-  addTrackToPlaylist = (playlistId) => {
-    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
-    const body = {
-      name: "",
-      artist: "",
-      url: ""
-    }
-
-    axios.post(url, body, 
-      {
-        headers: {
-          Authorization: "anderson-leite-johnson"
-        }
-      })
-      .then((res) => {
-        console.log(res)
-        this.setState({ playlistId: res.data.result.list })
-        // this.getAllPlaylists().then((res) => {
-        //   this.setState({ playlists: res.data.result.list });
-        // })
-      })
-      .catch((err) => {
-        alert(err.message)
-      })
-  }
 
   onValueChange = (event) => {
     this.setState({ inputValue: event.target.value });
@@ -117,12 +105,13 @@ export default class Playlists extends React.Component {
   };
 
   deletePlaylist = (playlistId) => {
-    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}`
-    axios.delete(url, {
+    return axios.delete(`${BASE_URL}/${playlistId}`,
+      {
         headers: {
-            Authorization: "anderson-leite-johnson"
+          Authorization: "anderson-leite-johnson"
         }
-    })
+      }
+    )
     .then(() => {
       alert("Playlist deletada!")
       this.getAllPlaylists().then((res) => {
@@ -132,44 +121,75 @@ export default class Playlists extends React.Component {
     .catch((err) => {
       alert("Erro! Tente novamente!")
     })
-}
+  }
 
-// mudarTela = (Tela) => {
-//   this.setState({telaAtual: Tela})
-// }
+  getPlaylistTrack = (playlistId) => {
+    return axios.get(`${BASE_URL}/${playlistId}/tracks`,
+      {
+        headers: {
+          Authorization: "anderson-leite-johnson"
+        }
+      })
+      .then(() => { 
+      this.getPlaylistTrack().then((res) => {
+        this.setState({ musicas: res.data.result.list });
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
+    });
+  };
 
-// escolherTela = () => {
-//   switch (this.state.telaAtual){
-//     case "telaPrincipal":
-//       return <TelaPrincipal mudarTela={this.mudarTela}/>
-//     case "telaPlaylist":
-//       return <TelaPlaylist mudarTela={this.mudarTela}/>
-//     default:
-//       return <TelaPrincipal mudarTela={this.mudarTela}/>
-//   }
-// }
+
+  // addTrackToPlaylist = (playlistId) => {
+  //   const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
+  //   const body = {
+  //     name: this.state.inputValue,
+  //     artist: this.state.inputValue,
+  //     url: this.state.inputValue
+  //   }
+
+  //   axios.post(url, body, 
+  //     {
+  //       headers: {
+  //         Authorization: "anderson-leite-johnson"
+  //       }
+  //     })
+  //     .then((res) => {
+  //       this.setState({ tracks: res.data.result.list })
+
+  //       this.getAllPlaylists().then((res) => {
+  //         this.setState({ playlists: res.data.result.list });
+  //       })
+  //     })
+  //     .catch((err) => {
+  //       alert(err.message)
+  //     })
+  // }
+
+  // getTracks = () => {
+
+  // }
 
   render() {
     return (
-      <div className="playlists">
-        <EstiloPlaylists>
-        <h2>Playlists</h2>
-        {this.state.playlists.map((playlist, i) => {
-          return (
-          <div>
-            <Playlist>
-            <button className="addTrack" onClick={() => this.addTrackToPlaylist(playlist.id)}>+</button>
-            <p key={i}>{playlist.name}</p>
-            <button className="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}>X</button>
-            </Playlist>
-          </div>
-        )})}
-        <input placeholder={"Nova playlist..."} value={this.state.inputValue} onChange={this.onValueChange} />
-        <div>
-          <button onClick={this.createPlaylist}>Criar Playlist</button>
+      <EstiloPlaylists>
+        <div className="playlists">
+          <h2>Playlists</h2>
+          {this.state.playlists.map((playlist, i) => {
+            return (
+              <Playlist>
+                <button className="addTrack" onClick={() => this.getPlaylistTrack(playlist.name)}>+</button>
+                <p key={i}>{playlist.name}</p>
+                <button className="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}>X</button>
+              </Playlist>
+          )})}
+          <input placeholder={"Nova playlist..."} value={this.state.inputValue} onChange={this.onValueChange} />
+          {/* <div> */}
+            <button onClick={this.createPlaylist}>Criar Playlist</button>
+          {/* </div> */}
         </div>
-        </EstiloPlaylists>
-      </div>
+      </EstiloPlaylists>
     );
   }
 }

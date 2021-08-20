@@ -1,39 +1,72 @@
 import React from "react";
-import styled from "styled-components";
-import TelaPrincipal from "./pages/telaPrincipal";
-import TelaPlaylist from "./pages/telaPlaylist";
-// import axios from "axios";
-// import Header from "./components/header";
-// import MenuLateral from "./components/menuLateral";
-// import Footer from "./components/footer";
+import Home from "./pages/HomePage/Home";
+import DetailsPlaylist from "./pages/DetailsPlaylistPage/DetailsPlaylist";
 
 export default class App extends React.Component {
   state = {
-    telaAtual: "telaPrincipal"
+    telaAtual: "home",
+    playlistClicadaId: ""
   }
 
-  mudarTela = (Tela) => {
-    this.setState({telaAtual: Tela})
+  goToDetailsPlaylistPage = (i) => {
+    this.setState({telaAtual: "detailsPlaylist", playlistClicadaId: i})
   }
 
-  escolherTela = () => {
+  goToHomePage = () => {
+    this.setState({telaAtual: "home", playlistClicadaId: ""})
+  }
+
+  selectPage = () => {
     switch (this.state.telaAtual){
-      case "telaPrincipal":
-        return <TelaPrincipal mudarTela={this.mudarTela}/>
-      case "telaPlaylist":
-        return <TelaPlaylist mudarTela={this.mudarTela}/>
+      case "home":
+        return <Home goToDetailsPlaylistPage={this.goToDetailsPlaylistPage}/>
+      case "detailsPlaylist":
+        return <DetailsPlaylist goToHomePage={this.goToHomePage} id={this.state.playlistClicadaId}/>
       default:
-        return <TelaPrincipal mudarTela={this.mudarTela}/>
+        return <Home goToDetailsPlaylistPage={this.goToDetailsPlaylistPage}/>
     }
   }
 
   render() {
     return (
       <div>
-        <button onClick={() => this.mudarTela("telaPrincipal")}>Principal</button>
-        <button onClick={() => this.mudarTela("telaPlaylist")}>Playlist</button>
-        {this.escolherTela()}
+        {this.selectPage()}
       </div>
     );
   }
-}       
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // mudarTela = (Tela) => {
+  //   this.setState({telaAtual: Tela})
+  // }
+
+  // goToDetailsPlaylist = () => {
+  //   this.setState({telaAtual: "homePage", clickedPlaylistId: ""})
+  // }
+
+  // escolherTela = () => {
+  //   switch (this.state.telaAtual){
+  //     case "loginPage":
+  //       return <LoginPage mudarTela={this.mudarTela}/>
+  //     case "homePage":
+  //       return <HomePage mudarTela={this.mudarTela}/>
+  //     case "detailsPlaylist":
+  //       return <DetailsPlaylistPage goToDetailsPlaylist={this.goToDetailsPlaylist} playlistId={this.state.clickedPlaylistId}/>
+  //     default:
+  //       return <LoginPage mudarTela={this.mudarTela}/>
+  //   }
+  // }

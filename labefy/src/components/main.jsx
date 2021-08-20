@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import Playlists from "./Playlists";
+import Tracks from "./Tracks";
 
 const EstiloMain = styled.div`
   display: flex;
@@ -16,9 +18,10 @@ export default class Main extends React.Component {
     return (
       <EstiloMain>
         <div className="main">
-          LABEFY!
+          <Tracks />
+          LABEFY
         </div>
       </EstiloMain>
     );
   }
-}       
+}
