@@ -11,7 +11,6 @@ export default class DetailsPlaylistPage extends React.Component {
             <EstiloPagina>
                 <div className="detailsPlaylist">
                     <div className="conteudo">
-                        detalhes
                         <MenuLateral />
                         <Tracks />
                     </div>

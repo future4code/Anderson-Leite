@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { BASE_URL } from "../constants/urls";
 
 const EstiloTracks = styled.div`
   display: flex;
@@ -71,28 +73,84 @@ export default class Tracks extends React.Component {
         url: ""
     }
 
-    render() {
-        return (
-            <EstiloTracks>
-                <div className="tracks">
-                    <h2>Tracks</h2>
-                    {this.state.tracks.map((tracks, i) => {
-                        return (
-                            <Musica>
-                            TRACKS
-                            {/* <button className="addTrack" onClick={() => this.addTrackToPlaylist(track.id)}>+</button>
-                            <p key={i}>{track.name}</p>
-                            <button className="deleteButton" onClick={() => this.deletePlaylist(track.id)}>X</button> */}
-                            </Musica>
-                        )})}
-                    <input placeholder={"Música..."} value={this.state.inputValue} onChange={this.onValueChange} />
-                    <input placeholder={"Artista..."} value={this.state.inputValue} onChange={this.onValueChange} />
-                    <input placeholder={"URL..."} value={this.state.inputValue} onChange={this.onValueChange} />
-                    <div>
-                        <button onClick={this.createPlaylist}>Adicionar música</button>
-                    </div>
-                </div>
-            </EstiloTracks>
-        );
-    }
+    getPlaylistTrack = (playlistId) => {
+        return axios.get(`${BASE_URL}/${playlistId}/tracks`,
+            {
+                headers: {
+                    Authorization: "anderson-leite-johnson"
+                }
+            })
+            .then((res) => { 
+            this.setState({
+                track: res.data.result.tracks,
+                playlistClicada: playlistId
+            })
+            .catch((err) => {
+                alert(err.message)
+            })
+        })
+        }
+
+            // this.getPlaylistTrack().then((res) => {
+            // })
+
+    // addTrackToPlaylist = (playlistId) => {
+    //     const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
+    //     const body = 
+    //         {
+    //             name: this.state.inputValue,
+    //             artist: this.state.inputValue,
+    //             url: this.state.inputValue
+    //         }
+    //         axios.post(url, body, 
+    //         {
+    //             headers: {
+    //                 Authorization: "anderson-leite-johnson"
+    //             }
+    //         })
+    //         .then((res) => {
+    //             this.setState({ track: res.data.result.list })    
+    //             this.getAllPlaylists().then((res) => {
+    //                 this.setState({ playlists: res.data.result.list });
+    //             })
+    //         })
+    //         .catch((err) => {
+    //             alert(err.message)
+    //         })
+    // }
+
+    // render() {
+    //     const songs = this.state.track.map((song) => {
+    //         return (
+    //             <div className="songs">
+    //                 <Musica>
+    //                     {`Música: ${song.name} - Artista: ${song.artist}`}
+    //                 </Musica>
+    //             </div>
+    //         );
+    //     });
+
+    //     const listPlaylist = this.state.list.map((playlist) => {
+    //         return (
+    //             <div>
+    //                 <Musica onClick={() => this.getPlaylistTrack(playlist.id)} />
+    //                 {playlist.name}
+    //             )
+    //         });
+    //         {this.state.playlistClicada === playlist.id ? ( <div>{songs}</div>) : ( ""
+    //     )}
+    //     </div>
+    //     )
+
+
+
+
+
+
+
+
+
+
+    // }
+
 }

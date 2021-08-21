@@ -141,31 +141,31 @@ export default class Playlists extends React.Component {
   };
 
 
-  // addTrackToPlaylist = (playlistId) => {
-  //   const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
-  //   const body = {
-  //     name: this.state.inputValue,
-  //     artist: this.state.inputValue,
-  //     url: this.state.inputValue
-  //   }
+  addTrackToPlaylist = (playlistId) => {
+    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
+    const body = 
+      {
+        name: this.state.inputValue,
+        artist: this.state.inputValue,
+        url: this.state.inputValue
+      }
+      axios.post(url, body, 
+      {
+        headers: {
+          Authorization: "anderson-leite-johnson"
+        }
+      })
+      .then((res) => {
+        this.setState({ tracks: res.data.result.list })
 
-  //   axios.post(url, body, 
-  //     {
-  //       headers: {
-  //         Authorization: "anderson-leite-johnson"
-  //       }
-  //     })
-  //     .then((res) => {
-  //       this.setState({ tracks: res.data.result.list })
-
-  //       this.getAllPlaylists().then((res) => {
-  //         this.setState({ playlists: res.data.result.list });
-  //       })
-  //     })
-  //     .catch((err) => {
-  //       alert(err.message)
-  //     })
-  // }
+        this.getAllPlaylists().then((res) => {
+          this.setState({ playlists: res.data.result.list });
+        })
+      })
+      .catch((err) => {
+        alert(err.message)
+      })
+  }
 
   // getTracks = () => {
 
