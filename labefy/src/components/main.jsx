@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Playlists from "./Playlists";
-// import Tracks from "./Tracks";
+import Background from "../assets/Background.jpg";
 
 const EstiloMain = styled.div`
   display: flex;
@@ -9,17 +8,23 @@ const EstiloMain = styled.div`
   width: 88%;
   height: 100vh;
   color: orange;
-  align-items: center;
+  text-shadow: 4px 2px 4px black;
+  align-items: flex-start;
   justify-content: center;
-`
+  background-image: url(${Background});
+  background-size: cover;
+  font-size: 20px;
 
-export default class Main extends React.Component { 
+  h1 {
+    margin-top: 12px;
+  }
+`
+export default class Main extends React.Component {
   render() {
     return (
       <EstiloMain>
         <div className="main">
-          {/* <Tracks /> */}
-          LABEFY
+          <h1>Ouça as suas músicas favoritas de graça e sem anúncios!</h1>
         </div>
       </EstiloMain>
     );

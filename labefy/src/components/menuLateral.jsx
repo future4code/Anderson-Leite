@@ -15,17 +15,23 @@ const EstiloMenuLateral = styled.div`
   .logo-nome {
     display: flex;
     align-items: center;
+    margin-top: 0;
   }
 
   img {
     margin-left: 24px;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   h1 {
     color: white;
     margin-left: 8px;
+    font-size: 40px;
+  }
+
+  h2 {
+    margin: 24px;
   }
 `
 
@@ -38,6 +44,7 @@ export default class MenuLateral extends React.Component {
             <img src={Logo}/>
             <h1>Labefy</h1>
           </div>
+          <h2>Playlists</h2>
           <Playlists />
         </div>
       </EstiloMenuLateral>

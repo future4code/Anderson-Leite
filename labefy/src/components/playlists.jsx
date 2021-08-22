@@ -3,11 +3,12 @@ import styled from "styled-components";
 import axios from "axios";
 import { BASE_URL } from "../constants/urls";
 
-const EstiloPlaylists = styled.div`
+const PlaylistsContainer = styled.div`
   display: flex;
   margin-left: 24px;
   margin-right: 24px;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 
   p {
     color: #dadada;
@@ -42,12 +43,10 @@ const EstiloPlaylists = styled.div`
 
   .deleteButton {
     width: 24px;
-    height: 20px;
   }
 
   .addTrack {
     width: 24px;
-    height: 20px;
   }
 `
 
@@ -60,7 +59,11 @@ const Playlist = styled.div`
 export default class Playlists extends React.Component {
   state = {
     playlists: [],
-    inputValue: ""
+    inputValue: "",
+    tracks: [],
+    trackName: "",
+    artist: "",
+    url: ""
   };
 
   getAllPlaylists = () => {
@@ -84,9 +87,10 @@ export default class Playlists extends React.Component {
         }
       })
       .then(() => {
+        alert("Playlist criada com sucesso!")
         this.getAllPlaylists().then((res) => {
-          this.setState({ inputValue: "" });
           this.setState({ playlists: res.data.result.list });
+          this.setState({ inputValue: "" });
         });
       })
       .catch ((err) => {
@@ -96,6 +100,7 @@ export default class Playlists extends React.Component {
 
   onValueChange = (event) => {
     this.setState({ inputValue: event.target.value });
+    this.setState({[event.target.name]: event.target.value})
   };
 
   componentDidMount = () => {
@@ -123,73 +128,88 @@ export default class Playlists extends React.Component {
     })
   }
 
-  getPlaylistTrack = (playlistId) => {
-    return axios.get(`${BASE_URL}/${playlistId}/tracks`,
-      {
-        headers: {
-          Authorization: "anderson-leite-johnson"
-        }
-      })
-      .then(() => { 
-      this.getPlaylistTrack().then((res) => {
-        this.setState({ musicas: res.data.result.list });
-      })
-      .catch((err) => {
-        alert(err.message)
-      })
-    });
-  };
+  // getPlaylistTracks = () => {
+  //   axios.get(`${BASE_URL}/${this.props.playlistId}/tracks`,
+  //     {
+  //       headers:
+  //         {
+  //           Authorization: "anderson-leite-johnson"
+  //         },
+  //     })
+  //     .then(res => {this.setState({tracks: res.data.result.tracks})
+  //     })
+  //     .catch (err => {
+  //       alert(err.message)
+  //     });
+  // };
 
+  // addTrackToPlaylist = () => {
+  //   const body = {
+  //       name: this.state.trackName,
+  //       artist: this.state.artist,
+  //       url: this.state.url
+  //   };
+  //   axios.post(`${BASE_URL}/${this.props.playlistId}/tracks`, body,
+  //     {
+  //       headers: {
+  //         Authorization: "anderson-leite-johnson"
+  //       }
+  //     }
+  //   )
+  //   .then(() => {
+  //     this.getPlaylistTracks();
+  //   })
+  //   .catch(err => {
+  //     alert(err.message);
+  //   });
+  //   this.setState({
+  //       trackName: "",
+  //       artist: "",
+  //       url: ""
+  //   })
+  // };
 
-  addTrackToPlaylist = (playlistId) => {
-    const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${playlistId}/tracks`
-    const body = 
-      {
-        name: this.state.inputValue,
-        artist: this.state.inputValue,
-        url: this.state.inputValue
-      }
-      axios.post(url, body, 
-      {
-        headers: {
-          Authorization: "anderson-leite-johnson"
-        }
-      })
-      .then((res) => {
-        this.setState({ tracks: res.data.result.list })
-
-        this.getAllPlaylists().then((res) => {
-          this.setState({ playlists: res.data.result.list });
-        })
-      })
-      .catch((err) => {
-        alert(err.message)
-      })
-  }
-
-  // getTracks = () => {
-
-  // }
+  // deleteTrackFromPlaylist = (trackId) => {
+  //   axios.delete(`${BASE_URL}/${this.props.playlistId}/tracks/${trackId}`,
+  //     {
+  //       headers: {
+  //         Authorization: "anderson-leite-johnson"
+  //       }
+  //     })
+  //     .then(() => {
+  //       alert("Música removida da playlist!")
+  //       this.getPlaylistTracks();
+  //     })
+  //     .catch(err => {
+  //       alert(err.message);
+  //     });
+  // };
 
   render() {
+    const listPlaylists = this.state.playlists.map((playlist, i) => {
     return (
-      <EstiloPlaylists>
-        <div className="playlists">
-          <h2>Playlists</h2>
-          {this.state.playlists.map((playlist, i) => {
-            return (
-              <Playlist>
-                <button className="addTrack" onClick={() => this.getPlaylistTrack(playlist.name)}>+</button>
-                <p key={i}>{playlist.name}</p>
-                <button className="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}>X</button>
-              </Playlist>
-          )})}
-          <input placeholder={"Nova playlist..."} value={this.state.inputValue} onChange={this.onValueChange} />
-          {/* <div> */}
+      <div className="playlists">
+        <Playlist>
+          <button className="addTrack" onClick={() => this.addTrackToPlaylist(playlist.id)}>+</button>
+          <p key={i} onClick={() => this.changePage("tracks", playlist.id)}>{playlist.name}</p>
+          <button className="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}>X</button>
+        </Playlist>
+        {/* {this.state.playlistClicada === playlist.id ? (
+          <div>{tracks}</div>
+        ) : ( "" )} */}
+      </div>
+    )});
+
+    return (
+      <PlaylistsContainer>
+        <div>
+          {listPlaylists}
+          <div className="create">
+            <input placeholder={"Nova playlist..."} value={this.state.inputValue} onChange={this.onValueChange} />
             <button onClick={this.createPlaylist}>Criar Playlist</button>
-          {/* </div> */}
+          </div>
         </div>
-      </EstiloPlaylists>
-    );
-  }
+      </PlaylistsContainer>
+    )}
+    
 }

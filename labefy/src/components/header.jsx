@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import axios from "axios";
 
 const EstiloHeader = styled.div`
     display: flex;
-    /* width: 100%; */
-    height: 8vh;
+    /* width: 1800px; */
+    height: 10vh;
     background-color: green;
     justify-content: space-evenly;
     align-items: center;

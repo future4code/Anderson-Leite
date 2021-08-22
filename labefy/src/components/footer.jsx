@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Logo from "../assets/Logo.png";
+import Instagram from "../assets/instagram.png";
+import Facebook from "../assets/facebook.png";
+import Twitter from "../assets/twitter.png";
 
 const EstiloFooter = styled.div`
     display: flex;
@@ -25,14 +28,24 @@ const EstiloFooter = styled.div`
     .socialMedias {
         display: flex;
         width: 200px;
+        height: 0;
         justify-content: space-between;
-        margin-left: 100px;
+        margin: 0 0 0 100px;
+        img {
+            width: 40px;
+            height: 40px;
+            background-color: black;
+        }
     }
 
     .column-1 {
         display: flex;
         align-items: center;
         height: 51px;
+        img {
+            width: 36px;
+            height: 36px;
+        }
     }
 
     p {
@@ -43,11 +56,6 @@ const EstiloFooter = styled.div`
         cursor: pointer;
         color: orange;
         }
-    }
-
-    img {
-        width: 36px;
-        height: 36px;
     }
 
     h1 {
@@ -128,9 +136,9 @@ export default class Footer extends React.Component {
                     </div>
                 
                     <div className="socialMedias">
-                        <p>Insta</p>
-                        <p>TT</p>
-                        <p>FB</p>
+                        <a target="_blank" href="http://www.instagram.com"><img src={Instagram}/></a>
+                        <a target="_blank" href="http://www.twitter.com"><img src={Twitter}/></a>
+                        <a target="_blank" href="http://www.facebook.com"><img src={Facebook}/></a>
                     </div>
                 </div>
 
