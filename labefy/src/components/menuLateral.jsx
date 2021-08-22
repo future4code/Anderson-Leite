@@ -35,19 +35,19 @@ const EstiloMenuLateral = styled.div`
   }
 `
 
-export default class MenuLateral extends React.Component {
-  render() {
-    return (
-      <EstiloMenuLateral>
-        <div className="menuLateral">
-          <div className="logo-nome">
-            <img src={Logo}/>
-            <h1>Labefy</h1>
-          </div>
-          <h2>Playlists</h2>
-          <Playlists />
+const MenuLateral = (props) => {
+  return (
+    <EstiloMenuLateral>
+      <div className="menuLateral">
+        <div className="logo-nome">
+          <img src={Logo}/>
+          <h1>Labefy</h1>
         </div>
-      </EstiloMenuLateral>
-    );
-  }
+        <h2>Playlists</h2>
+        <Playlists />
+      </div>
+    </EstiloMenuLateral>
+  )
 }
+
+export default MenuLateral

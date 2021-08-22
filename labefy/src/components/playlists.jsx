@@ -54,16 +54,16 @@ const Playlist = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export default class Playlists extends React.Component {
   state = {
     playlists: [],
     inputValue: "",
-    tracks: [],
-    trackName: "",
-    artist: "",
-    url: ""
   };
 
   getAllPlaylists = () => {
@@ -128,75 +128,15 @@ export default class Playlists extends React.Component {
     })
   }
 
-  // getPlaylistTracks = () => {
-  //   axios.get(`${BASE_URL}/${this.props.playlistId}/tracks`,
-  //     {
-  //       headers:
-  //         {
-  //           Authorization: "anderson-leite-johnson"
-  //         },
-  //     })
-  //     .then(res => {this.setState({tracks: res.data.result.tracks})
-  //     })
-  //     .catch (err => {
-  //       alert(err.message)
-  //     });
-  // };
-
-  // addTrackToPlaylist = () => {
-  //   const body = {
-  //       name: this.state.trackName,
-  //       artist: this.state.artist,
-  //       url: this.state.url
-  //   };
-  //   axios.post(`${BASE_URL}/${this.props.playlistId}/tracks`, body,
-  //     {
-  //       headers: {
-  //         Authorization: "anderson-leite-johnson"
-  //       }
-  //     }
-  //   )
-  //   .then(() => {
-  //     this.getPlaylistTracks();
-  //   })
-  //   .catch(err => {
-  //     alert(err.message);
-  //   });
-  //   this.setState({
-  //       trackName: "",
-  //       artist: "",
-  //       url: ""
-  //   })
-  // };
-
-  // deleteTrackFromPlaylist = (trackId) => {
-  //   axios.delete(`${BASE_URL}/${this.props.playlistId}/tracks/${trackId}`,
-  //     {
-  //       headers: {
-  //         Authorization: "anderson-leite-johnson"
-  //       }
-  //     })
-  //     .then(() => {
-  //       alert("Música removida da playlist!")
-  //       this.getPlaylistTracks();
-  //     })
-  //     .catch(err => {
-  //       alert(err.message);
-  //     });
-  // };
-
   render() {
     const listPlaylists = this.state.playlists.map((playlist, i) => {
     return (
       <div className="playlists">
         <Playlist>
-          <button className="addTrack" onClick={() => this.addTrackToPlaylist(playlist.id)}>+</button>
-          <p key={i} onClick={() => this.changePage("tracks", playlist.id)}>{playlist.name}</p>
+          {/* <button className="addTrack" onClick={() => this.addTrackToPlaylist(playlist.id)}>+</button> */}
+          <p key={i}>{playlist.name}</p>
           <button className="deleteButton" onClick={() => this.deletePlaylist(playlist.id)}>X</button>
         </Playlist>
-        {/* {this.state.playlistClicada === playlist.id ? (
-          <div>{tracks}</div>
-        ) : ( "" )} */}
       </div>
     )});
 

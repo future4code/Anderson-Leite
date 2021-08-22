@@ -16,17 +16,17 @@ const EstiloMain = styled.div`
   font-size: 20px;
 
   h1 {
-    margin-top: 12px;
+    margin-top: 20px;
   }
 `
-export default class Main extends React.Component {
-  render() {
-    return (
-      <EstiloMain>
-        <div className="main">
-          <h1>Ouça as suas músicas favoritas de graça e sem anúncios!</h1>
-        </div>
-      </EstiloMain>
-    );
-  }
+const Main = (props) => {
+  return (
+    <EstiloMain>
+      <div className="main">
+        <h1>Ouça as suas músicas favoritas de graça e sem anúncios!</h1>
+      </div>
+    </EstiloMain>
+  );
 }
+
+export default Main

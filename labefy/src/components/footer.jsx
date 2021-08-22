@@ -27,13 +27,14 @@ const EstiloFooter = styled.div`
 
     .socialMedias {
         display: flex;
-        width: 200px;
+        width: 160px;
         height: 0;
         justify-content: space-between;
+        align-items: flex-start;
         margin: 0 0 0 100px;
         img {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             background-color: black;
         }
     }
