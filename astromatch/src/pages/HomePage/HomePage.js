@@ -3,6 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { BASE_URL } from '../../constants/urls';
 import { Buttons } from '../../components/Profile/Buttons/Buttons';
 import { ProfileCard } from '../../components/Profile/ProfileCard/ProfileCard';
+import styled from 'styled-components';
+
+const HomePageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 540px;
+`
 
 export function HomePage() {
     const [profileToChoose, setProfileToChoose] = useState(undefined)
@@ -40,7 +50,7 @@ export function HomePage() {
     }
     
     return (
-        <div>
+        <HomePageContainer>
             {profileToChoose ? (
                 <>
                     <ProfileCard profile={profileToChoose}/>
@@ -49,6 +59,6 @@ export function HomePage() {
             ) : (
                 <p>Carregando...</p>
             )}            
-        </div>
+        </HomePageContainer>
     );
 }

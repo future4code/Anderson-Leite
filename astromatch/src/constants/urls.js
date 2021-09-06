@@ -1,1 +1,1 @@
-export const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/anderson-leite"
+export const BASE_URL = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/anderson-leite-johnson"

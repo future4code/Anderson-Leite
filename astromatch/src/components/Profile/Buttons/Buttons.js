@@ -1,27 +1,32 @@
 import React from "react";
 import styled from "styled-components";
+import { BiLike } from "react-icons/bi"
+import { BiDislike } from "react-icons/bi"
 
 const ButtonsContainer = styled.div`
     display: flex;
     width: 100%;
     height: 100px;
     justify-content: space-around;
+    align-items: center;
     
     .buttonLike {
-      font-size: 28px;
-      border: 1px solid green;
-      color: green;
-      background-color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 100%;
-
-      &:hover {
-        color: white;
-        background-color: green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        border: 1px solid green;
+        color: green;
+        background-color: white;
         width: 64px;
         height: 64px;
-        transition: ease all 0.3s;
+        border-radius: 100%;
+
+      &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: green;
+        transform: scale(1.1);
       }
 
       &:focus {
@@ -32,20 +37,22 @@ const ButtonsContainer = styled.div`
     }
 
     .buttonDislike {
-      font-size: 28px;
-      border: 1px solid red;
-      color: red;
-      background-color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 100%;
-
-      &:hover {
-        color: white;
-        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 32px;
+        border: 1px solid red;
+        color: red;
+        background-color: white;
         width: 64px;
         height: 64px;
-        transition: ease all 0.3s;
+        border-radius: 100%;
+
+      &:hover {
+        cursor: pointer;
+        color: white;
+        background-color: red;
+        transform: scale(1.1);
       }
 
       &:focus {
@@ -59,8 +66,8 @@ const ButtonsContainer = styled.div`
 export function Buttons(props) {
   return (
     <ButtonsContainer>
-        <button className="buttonDislike" onClick={props.onClickX}>X</button>
-        <button className="buttonLike" onClick={props.onClickV}>V</button>
+        <button className="buttonDislike" onClick={props.onClickX}><BiDislike /></button>
+        <button className="buttonLike" onClick={props.onClickV}><BiLike /></button>
     </ButtonsContainer>
   );
 }

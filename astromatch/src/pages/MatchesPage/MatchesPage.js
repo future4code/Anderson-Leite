@@ -5,11 +5,13 @@ import { BASE_URL } from '../../constants/urls';
 import { MatchProfile } from '../../components/Matches/MatchProfile';
 import { ResetButton } from '../../components/ResetButton';
 
-// const MatchListContainer = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     padding: 20px;
-// `
+const MatchesPageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 540px;
+    overflow-y: auto;
+`
 
 export function MatchesPage(props) {
     const [getMatches, setMatches] = useState([])
@@ -22,11 +24,11 @@ export function MatchesPage(props) {
     }, []);
 
     return (
-        <>
+        <MatchesPageContainer>
             {getMatches.map((profile) => {
                 return <MatchProfile profile={profile}/>
             })}
             <ResetButton />
-        </>
+        </MatchesPageContainer>
     )
 }

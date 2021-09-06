@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { MatchesPage } from "./pages/MatchesPage/MatchesPage";
 import { NavBar } from "./components/NavBar/NavBar";
-import { ResetButton } from "./components/ResetButton";
 
 const AppContainer = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const AppContainer = styled.div`
   width: 400px;
   height: 600px;
   border-radius: 8px;
-  border: 1px solid black;
+  border: 1px solid orange;
   justify-content: center;
   align-items: center;
 `

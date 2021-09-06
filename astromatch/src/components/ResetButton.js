@@ -2,18 +2,20 @@ import axios from 'axios';
 import React from 'react';
 import styled from 'styled-components';
 import { BASE_URL } from '../constants/urls';
+import { BiRefresh } from 'react-icons/bi';
 
-const ButtonContainer = styled.div`
-    .button {
-    font-size: 28px;
-    border: 1px solid green;
-    color: green;
-    background-color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 100%;
-    max-width: 100%;
-    border-radius: 100%;
+const ResetButtonContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    
+    .reset {
+        color: blueviolet;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        padding: 8px;
     }
 `
 
@@ -26,8 +28,8 @@ export function ResetButton() {
     }
 
     return (
-        <ButtonContainer>
-            <button onClick={onClickReset}>Limpar perfis e matches</button>
-        </ButtonContainer>
+        <ResetButtonContainer>
+            <BiRefresh className="reset" onClick={onClickReset}/>
+        </ResetButtonContainer>
     );
 }
