@@ -1,0 +1,62 @@
+import React from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
+import Buttons from "./Buttons";
+
+const HeaderContainer = styled.div`
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    color: orange;
+    background-color: #1E222B;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    h1 span {
+        display: inline-block;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(to right, white 78%, orange 22%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        font-size: 100px;
+    }
+`
+
+const Logo_Buttons = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 20px 60px 0 60px;
+`
+
+function Header() {
+    const history = useHistory()
+  
+    const goToHomePage = () => {
+        history.push("/")
+    }
+  
+    const goToAdminHomePage = () => {
+        history.push("/login")
+    }
+  
+    const goToListTripsPage = () => {
+        history.push("/trips/list")
+    }
+  
+    return (
+        <HeaderContainer>
+            <Logo_Buttons>
+                <h1><span>LabeX</span></h1>
+                <Buttons onClickHomePage={goToHomePage} onClickListTripsPage={goToListTripsPage} onClickAdminHomePage={goToAdminHomePage}/>
+            </Logo_Buttons>
+        </HeaderContainer>
+    );
+}
+  
+export default Header;
