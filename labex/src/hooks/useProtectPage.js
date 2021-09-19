@@ -9,7 +9,7 @@ export const useProtectedPage = () => {
         const token = localStorage.getItem("token");
         
         if(token === null) {
-            alert("Área protegida. Por favor, efetue o login.")
+            alert("Área restrita! Por favor, efetue o login.")
             history.push("/login")
         }
     }, [history]);

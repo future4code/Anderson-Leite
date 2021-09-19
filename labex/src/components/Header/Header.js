@@ -42,18 +42,22 @@ function Header() {
     }
   
     const goToAdminHomePage = () => {
-        history.push("/login")
+        history.push("/admin/trips/list")
     }
   
     const goToListTripsPage = () => {
         history.push("/trips/list")
+    }
+
+    const goToLoginPage = () => {
+        history.push("/login")
     }
   
     return (
         <HeaderContainer>
             <LogoAndButtons>
                 <h1><span>LabeX</span></h1>
-                <Buttons onClickHomePage={goToHomePage} onClickListTripsPage={goToListTripsPage} onClickAdminHomePage={goToAdminHomePage}/>
+                <Buttons onClickHomePage={goToHomePage} onClickListTripsPage={goToListTripsPage} onClickAdminHomePage={goToAdminHomePage} onClickLoginPage={goToLoginPage}/>
             </LogoAndButtons>
         </HeaderContainer>
     );

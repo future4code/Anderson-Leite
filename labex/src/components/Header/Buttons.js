@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { FaUserAstronaut } from "react-icons/fa"
 import { GoRocket } from "react-icons/go"
 import { AiOutlineHome } from "react-icons/ai"
+import { GiPadlock } from "react-icons/gi"
 
 const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 180px;
+    width: 260px;
     height: 100px;
 
     button {
@@ -44,6 +45,10 @@ const ButtonCard = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    p {
+        font-size: 12px;
+    }
 `
 
 function Buttons(props) {
@@ -51,7 +56,8 @@ function Buttons(props) {
     <ButtonsContainer>
         <ButtonCard><button onClick={props.onClickHomePage}><AiOutlineHome className="icons"/></button><p>Home</p></ButtonCard>
         <ButtonCard><button onClick={props.onClickListTripsPage}><GoRocket className="icons"/></button><p>Viagens</p></ButtonCard>
-        <ButtonCard><button onClick={props.onClickAdminHomePage}><FaUserAstronaut className="icons"/></button><p>Login</p></ButtonCard>
+        <ButtonCard><button onClick={props.onClickAdminHomePage}><FaUserAstronaut className="icons"/></button><p>Admin</p></ButtonCard>
+        <ButtonCard><button onClick={props.onClickLoginPage}><GiPadlock className="icons"/></button><p>Login</p></ButtonCard>
     </ButtonsContainer>
   );
 }
