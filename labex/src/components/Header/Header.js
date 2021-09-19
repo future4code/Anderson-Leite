@@ -9,7 +9,7 @@ const HeaderContainer = styled.div`
     height: 10vh;
     color: orange;
     background-color: #1E222B;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
 
@@ -21,17 +21,17 @@ const HeaderContainer = styled.div`
         background-clip: text;
         -webkit-background-clip: text;
         color: transparent;
-        font-size: 100px;
+        font-size: 90px;
     }
 `
 
-const Logo_Buttons = styled.div`
+const LogoAndButtons = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     width: 100%;
     height: 100%;
-    margin: 20px 60px 0 60px;
+    margin: 0 60px 0 60px;
 `
 
 function Header() {
@@ -51,10 +51,10 @@ function Header() {
   
     return (
         <HeaderContainer>
-            <Logo_Buttons>
+            <LogoAndButtons>
                 <h1><span>LabeX</span></h1>
                 <Buttons onClickHomePage={goToHomePage} onClickListTripsPage={goToListTripsPage} onClickAdminHomePage={goToAdminHomePage}/>
-            </Logo_Buttons>
+            </LogoAndButtons>
         </HeaderContainer>
     );
 }

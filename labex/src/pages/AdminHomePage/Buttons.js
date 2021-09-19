@@ -5,7 +5,7 @@ const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 400px;
+    width: 620px;
     height: 60px;
     margin-top: 40px;
 
@@ -20,7 +20,7 @@ const ButtonsContainer = styled.div`
         border-radius: 8px;
 
         p {
-            font-size: 20px;
+            font-size: 20px
         }
 
         :hover {
@@ -34,7 +34,8 @@ function Buttons(props) {
     return (
         <ButtonsContainer>
             <button onClick={props.onClickVoltar}><p>Voltar</p></button>
-            <button onClick={props.onClickInscrever}><p>Inscrever-se</p></button>
+            <button onClick={props.onClickCriar}><p>Criar Viagem</p></button>
+            <button onClick={props.onClickLogout}><p>Logout</p></button>
         </ButtonsContainer>
     );
 }

@@ -34,7 +34,7 @@ function Router() {
                         <ListTripsPage />
                     </Route>
 
-                    <Route exact path="/trips/application">
+                    <Route exact path={"/trips/application"}>
                         <ApplicationFormPage />
                     </Route>
 
@@ -42,15 +42,15 @@ function Router() {
                         <LoginPage />
                     </Route>
 
-                    <Route exact path="/admin/trips/list">
+                    <Route exact path={"/admin/trips/list"}>
                         <AdminHomePage />
                     </Route>
 
-                    <Route exact path="/admin/trips/create">
+                    <Route exact path={"/admin/trips/create"}>
                         <CreateTripPage />
                     </Route>
 
-                    <Route exact path="/admin/trips/:id">
+                    <Route exact path={"/admin/trips/:id"}>
                         <TripDetailsPage />
                     </Route>
 

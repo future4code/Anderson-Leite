@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import Buttons from "./Buttons";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL } from "../../constants/urls";
 
 const ListTripsPageContainer = styled.div`
   display: flex;
-  margin-top: 10vh;
+  margin-top: 8vh;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -14,26 +16,85 @@ const ListTripsPageContainer = styled.div`
 
   h1 {
     color: white;
+    margin: 16px 0 16px 0;
+  }
+`
+
+const ListTripsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid white;
+  border-radius: 8px;
+  width: 620px;
+  height: 660px;
+  background-color: orange;
+  overflow: auto;
+  opacity: 0.9;
+`
+
+const ListTripsCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  height: auto;
+  justify-content: center;
+  align-items: flex-start;
+  border: 2px solid black;
+  border-radius: 8px;
+  color: black;
+  background-color: white;
+  margin-top: 8px;
+
+  p {
+    margin: 2px 0 2px 4px;
   }
 `
 
 function ListTripsPage() {
   const history = useHistory()
 
-  const goToAdminHomePage = () => {
-    history.push("/admin/trips/list")
-  }
-
   const goBack = () => {
     history.goBack()
   }
+
+  const goToApplicationFormPage = () => {
+    history.push("/trips/application")
+  }
+
+  const [listTrips, setListTrips] = useState([]);
+    
+    useEffect(() => {
+      axios.get(`${BASE_URL}/trips`)
+      .then((res) => {
+        setListTrips(res.data.trips)
+      })
+      .catch((err) => {
+        alert("Ocorreu um erro! Tente novamente.")
+      })
+    }, []);
   
   return (
+    <>
+    <Header />
     <ListTripsPageContainer>
-        <Header />
-        <Buttons onClickVoltar={goBack} onClickAdmin={goToAdminHomePage}/>
-        <h1>LISTA DE VIAGENS</h1>
+      <Buttons onClickVoltar={goBack} onClickInscrever={goToApplicationFormPage}/>
+      <h1>Lista de Viagens</h1>
+        <ListTripsContainer>
+          {listTrips.map((trip) => {
+            return (
+              <ListTripsCard>
+                <p><b>Nome</b>: {trip.name}</p>
+                <p><b>Descrição</b>: {trip.description}</p>
+                <p><b>Planeta</b>: {trip.planet}</p>
+                <p><b>Duração</b>: {trip.durationInDays} dias</p>
+                <p><b>Data</b>: {trip.date}</p>
+              </ListTripsCard>
+            )})}
+        </ListTripsContainer>
     </ListTripsPageContainer>
+    </>
   );
 }
 
