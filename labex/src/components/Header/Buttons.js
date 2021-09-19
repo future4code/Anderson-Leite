@@ -9,7 +9,7 @@ const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 260px;
+    width: 240px;
     height: 100px;
 
     button {
