@@ -44,7 +44,7 @@ const ListTripsCard = styled.div`
   border-radius: 8px;
   color: black;
   background-color: white;
-  margin-top: 8px;
+  margin: 8px 0 8px 0;
 
   :hover {
       cursor: pointer;
@@ -88,7 +88,7 @@ function AdminHomePage() {
     }
 
     const goToTripDetailsPage = () => {
-        history.push("/admin/trips/:id")
+        history.push()
     }
 
     const logout = () => {
@@ -134,8 +134,8 @@ function AdminHomePage() {
                 {getListTrips.map((trip) => {
                     return (
                         <ListTripsCard>
-                            <Trip>
-                                <span onClick={goToTripDetailsPage}><b>{trip.name}</b></span>
+                            <Trip key={trip.id}>
+                                <span onClick={goToTripDetailsPage(trip.id)}><b>{trip.name}</b></span>
                                 <BsTrash className="trash" />
                             </Trip>
                         </ListTripsCard>

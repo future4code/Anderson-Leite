@@ -95,7 +95,7 @@ function LoginPage() {
             required
             pattern={"^.{6,}"} title={"A senha deve possuir no mínimo 6 caracteres."}
           />
-          <button>Fazer login</button>
+          <button><p>Fazer login</p></button>
         </form>
       </LoginPageContainer>
     </>
