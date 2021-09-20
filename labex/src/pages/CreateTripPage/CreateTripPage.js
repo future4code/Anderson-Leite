@@ -41,6 +41,26 @@ const FormContainer = styled.div`
         margin: 22px 0 22px 0;
     }
 
+    button {
+        color: white;
+        background-color: orange;
+        opacity: 0.9;
+        font-weight: bold;
+        width: 180px;
+        height: 60px;
+        border: 2px solid white;
+        border-radius: 8px;
+        margin: 64px 0 0 230px;
+
+        p {
+            font-size: 20px;
+        }
+
+        :hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
 `
 
 function CreateTripPage() {
@@ -79,21 +99,13 @@ function CreateTripPage() {
                 headers: { auth: token }
             })
             .then((res) => {
+                alert("Viagem criada com sucesso!")
                 console.log(res)
             })
             .catch((ERR) => {
                 console.log(ERR)
             });
         }
-    //     axios.post(`${BASE_URL}/trips`, form)
-    //     .then((res) => {
-    //       localStorage.getItem("token", res.data.token);
-    //       history.push("/admin/trips/list")
-    //     })
-    //     .catch((err) => {
-    //       alert(err);
-    //     });
-    //   };
 
     return (
         <>
@@ -113,7 +125,7 @@ function CreateTripPage() {
                             title={"O nome não pode conter números."}
                         />
                         <select onChange={onChange} name="planet" value={form.planet}>
-                            <option value disabled selected>Escolha um Planeta</option>
+                            <option>Escolha um Planeta</option>
                             <option>Lua</option>
                             <option>Marte</option>
                             <option>Vênus</option>
@@ -141,10 +153,10 @@ function CreateTripPage() {
                             value={form.durationInDays}
                         />
                         <select placeholder="País" name="country" value="country" required>
-                            <option value disabled selected>Escolha um país</option>
+                            <option>Escolha um país</option>
                             <option>Brasil</option>
                         </select>
-                        <button>Criar</button>
+                        <button><p>Criar</p></button>
                     </form>
                 </FormContainer>
                 <Buttons onClickVoltar={goBack}/>

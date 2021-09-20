@@ -12,7 +12,7 @@ const ButtonsContainer = styled.div`
     button {
         color: white;
         background-color: orange;
-        opacity: 0.8;
+        opacity: 0.9;
         font-weight: bold;
         width: 180px;
         height: 60px;
@@ -34,7 +34,6 @@ function Buttons(props) {
     return (
         <ButtonsContainer>
             <button onClick={props.onClickVoltar}><p>Voltar</p></button>
-            <button onClick={props.onClickEnviar}><p>Enviar</p></button>
         </ButtonsContainer>
     );
 }

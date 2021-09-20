@@ -40,6 +40,26 @@ const FormContainer = styled.div`
         margin: 22px 0 22px 0;
     }
 
+    button {
+        color: white;
+        background-color: orange;
+        opacity: 0.9;
+        font-weight: bold;
+        width: 180px;
+        height: 60px;
+        border: 2px solid white;
+        border-radius: 8px;
+        margin: 69px 0 0 230px;
+
+        p {
+            font-size: 20px;
+        }
+
+        :hover {
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+    }
 `
 
 function ApplicationFormPage() {
@@ -49,7 +69,7 @@ function ApplicationFormPage() {
         history.goBack()
     }
 
-    const { form, onChange } = useForm({
+    const { form, onChange, cleanFields } = useForm({
         trip:"",
         name: "",
         age: "",
@@ -58,8 +78,20 @@ function ApplicationFormPage() {
         country: "",
     })
 
-    const applyToTrip = () => {
-        axios.post(`${BASE_URL}/trips/${form.trip}/apply`)
+    const onSubmitRegister = (event) => {
+        event.preventDefault();
+        cleanFields();
+
+        const body = {
+            trip: form.trip,
+            name: form.name,
+            age: form.age,
+            applicationText: form.applicationText,
+            profession: form.profession,
+            country: form.country,
+        }
+
+        axios.post(`${BASE_URL}/trips/${form.trip}/apply`, body,)
         .then((res) => {
             alert("Inscrição realizada com sucesso!");
         })
@@ -67,17 +99,6 @@ function ApplicationFormPage() {
             alert("Ocorreu um erro! Tente novamente.")
         });
     };
-
-    const onSubmitRegister = () => {
-        const body = {
-            name: form.name,
-            age: form.age,
-            applicationText: form.applicationText,
-            profession: form.profession,
-            country: form.country,
-        };
-        applyToTrip(body)
-    }
 
     return (
         <>
@@ -87,7 +108,7 @@ function ApplicationFormPage() {
 
                 <FormContainer>
                     <form onSubmit={onSubmitRegister}>
-                        <select>
+                        <select onChange={onChange} name="trip" value={form.trip}>
                             <option value disabled selected>Escolha uma viagem</option>
                             <option>Lua</option>
                             <option>Marte</option>
@@ -123,11 +144,11 @@ function ApplicationFormPage() {
                             value={form.profession}
                             onChange={onChange}
                         />
-                        <select placeholder="País" name="country" value={form.country} required>
+                        <select placeholder="País" name="country" onChange={onChange} value={form.country} required>
                             <option value disabled selected>Escolha um país</option>
                             <option>Brasil</option>
                         </select>
-                        <button>Inscrever</button>
+                        <button><p>Enviar</p></button>
                     </form>
                 </FormContainer>
                 <Buttons onClickVoltar={goBack}/>

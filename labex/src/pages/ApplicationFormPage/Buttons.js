@@ -34,7 +34,6 @@ function Buttons(props) {
     return (
         <ButtonsContainer>
             <button onClick={props.onClickVoltar}><p>Voltar</p></button>
-            <button onClick={props.onClickEnviar}><p>Enviar</p></button>
         </ButtonsContainer>
     );
 }

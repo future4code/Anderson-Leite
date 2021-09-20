@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect } from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import Header from "../../components/Header/Header";
 import { BASE_URL } from "../../constants/urls";
@@ -23,12 +24,18 @@ const TripDetailsCard = styled.div`
 `
 
 function TripDetailsPage(props) {
+  const history = useHistory();
+
+  const goToTripDetails = (id) => {
+    history.push(`/admin/trips/${id}`)
+  }
+
   const trip = props.trip
 
   useEffect (() => {
     const token = localStorage.getItem("token");
     
-    axios.get(`${BASE_URL}/trip/GfJiFTYZVDQzlTs7UN6a`,
+    axios.get(`${BASE_URL}/trips`,
     {
       headers: {
         auth: token
@@ -45,7 +52,7 @@ function TripDetailsPage(props) {
   return (
     <>
     <Header />
-      <TripDetailsCard>
+      <TripDetailsCard onClick={() => goToTripDetails(trip.id)}>
         <p><b>Nome</b>: {trip.name}</p>
         <p><b>Descrição</b>: {trip.description}</p>
         <p><b>Planeta</b>: {trip.planet}</p>
